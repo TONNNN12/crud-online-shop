@@ -32,14 +32,17 @@
                             <td class="p-3">{{ $p->price }}</td>
                             <td class="p-3">{{ $p->stock }}</td>
                             <td class="p-3">
-                               <a href="{{ route('product.edit', $p->id) }}">
+                                <div class="flex gap-2">
+                                    <a href="{{ route('product.edit', $p->id) }}">
                                 <x-secondary-button>Edit</x-secondary-button>
                                </a>
-                               <form action="post" action="{{ route('product.destroy' ,$p->id) }}" class="inline m1-1">
+                               <form method="POST" action="{{ route('product.destroy' , $p->id) }}">
                                 @csrf
                                 @method('delete')
                                 <x-danger-button>Hapus</x-danger-button>
                                </form>
+                                </div>
+                               
                             </td>
                             </tr>
                             @endforeach
