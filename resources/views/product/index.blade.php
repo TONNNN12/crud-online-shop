@@ -35,6 +35,11 @@
                                <a href="{{ route('product.edit', $p->id) }}">
                                 <x-secondary-button>Edit</x-secondary-button>
                                </a>
+                               <form action="post" action="{{ route('product.destroy' ,$p->id) }}" class="inline m1-1">
+                                @csrf
+                                @method('delete')
+                                <x-danger-button>Hapus</x-danger-button>
+                               </form>
                             </td>
                             </tr>
                             @endforeach

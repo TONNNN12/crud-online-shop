@@ -31,13 +31,13 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nmae' => 'required',
+            'name' => 'required',
             'description' => 'required',
             'price' => 'required',
             'stock' => 'required'
         ]);
 
-        Product::createa($request->all());
+        Product::create($request->all());
 
         return redirect()->route('product.index');
     }
@@ -64,7 +64,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'stock' => 'required'
+        ]);
+
+        Product::find($id)->update($request->all());
+
+        return redirect()->route('product.index');
     }
 
     /**
@@ -72,6 +81,8 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Product::find($id)->delete();
+
+        return redirect()->route('product.index');
     }
 }
