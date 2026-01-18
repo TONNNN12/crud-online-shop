@@ -9,7 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                     <form method="POST" action="{{ route('product.store') }}">
+                     <form method="POST" action="{{ route('product.store') }}"
+                     enctype="multipart/form-data">
                          @csrf
                         Name 
                         <div class="mb-2" w-80>
@@ -34,6 +35,16 @@
                             <x-input-label for="stock" :value=__('stock')/>
                             <x-text-input id="stock" class="block mt-1 w-full" type="text" name="stock" :value="old('stock')" required/>
                             <x-input-error :messages="$errors->get('stock')" class="mt-2"/>
+                       <div class="mb-2">
+    <x-input-label for="image" value="Image"/>
+    <input
+        id="image"
+        type="file"
+        name="image"
+        class="block mt-1 w-full border-gray-300 rounded-md"
+    >
+    <x-input-error :messages="$errors->get('image')" class="mt-2"/>
+</div>
                            <x-primary-button class="mt-4">
                             {{ __('Simpan') }}
                            </x-primary-button>

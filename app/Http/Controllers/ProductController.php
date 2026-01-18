@@ -34,10 +34,22 @@ class ProductController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'stock' => 'required'
+            'stock' => 'required',
+            'image' => 'nullable|image|mimes:png,jpg,jpeg|max:2048'
         ]);
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('product', 'public');
+        } else {
+            $imagePath = null;
+        }
 
-        Product::create($request->all());
+        Product::create([
+            'name' =>$request->name,
+            'description' =>$request->description,
+            'price' => $request->price,
+            'stock' => $request->stock,
+            'image' => $imagePath,
+        ]);
 
         return redirect()->route('product.index');
     }

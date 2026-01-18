@@ -20,6 +20,7 @@
                             <td class="p-3">DESKRIPSI</td>
                             <td class="p-3">HARGA</td>
                             <td class="p-3">STOK</td>
+                            <td class="p-3">Foto Produk</td>
                             <td class="p-3">AKSI</td>
                             </tr>
                         </thead>
@@ -31,6 +32,18 @@
                             <td class="p-3">{{ $p->description }}</td>
                             <td class="p-3">{{ $p->price }}</td>
                             <td class="p-3">{{ $p->stock }}</td>
+                            <td class="p-3">
+    @if ($p->image)
+        <img 
+            src="{{ asset('storage/' . $p->image) }}" 
+            width="100"
+            class="rounded"
+        >
+    @else
+        <span class="text-gray-500">Tidak ada foto</span>
+    @endif
+</td>
+
                             <td class="p-3">
                                 <div class="flex gap-2">
                                     <a href="{{ route('product.edit', $p->id) }}">
